@@ -1,13 +1,15 @@
-function wait(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+import express from 'express';
+import { createServer } from 'http';
+import type { Request, Response } from 'express';
 
-async function main() {
-  const port = process.env.PORT || 3000;
-  console.log(port)
-  console.log('Hello');
-  await wait(1000);
-  console.log('World');
-}
+const app = express();
+const server = createServer(app);
+const PORT = process.env.PORT || 3000;
 
-main();
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello World!');
+});
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

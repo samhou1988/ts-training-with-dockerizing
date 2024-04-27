@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+ api:
+  build:
+   context: .
+   target: production
+  environment:
+   - NODE_ENV=development
+   - PORT=4000
+  ports:
+   - 4000:4000
